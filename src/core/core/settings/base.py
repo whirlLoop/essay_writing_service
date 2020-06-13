@@ -119,3 +119,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+APPS_PATH = BASE_DIR[:-5]
+print(APPS_PATH)
+STATICFILES_DIRS = (
+    APPS_PATH + '/service_front/static',
+)
