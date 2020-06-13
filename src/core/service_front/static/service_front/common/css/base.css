@@ -1,0 +1,93 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.company-logo img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.brand-logo {
+    font-size: 1.6rem !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.dropdown-content {
+    width: 300px !important;
+    height: auto !important;
+}
+
+.content {
+    flex: 1;
+    flex: 1 0 auto;
+    color: green;
+}
+
+.footer {
+    flex-shrink: 0;
+    height: 100vh;
+}
+
+.footer-content {
+    margin-top: 100px !important;
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.payments ul {
+    padding: 40px;
+    background: whitesmoke;
+    display: flex;
+    justify-content: space-evenly;
+    width: 300px;
+    border-radius: 5px;
+}
+
+.payments ul li, .social ul li{
+    float: left;
+}
+
+.social ul {
+    display: flex;
+    justify-content: space-evenly;
+    width: 200px;
+}
+
+.foot-head {
+    border-bottom: solid 2px black;
+    width: 40%;
+}
+
+.footer-menu li {
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 992px) and (min-width: 601px) {
+    .foot-head {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .brand-logo {
+        font-size: 1.2em !important;
+    }
+
+    .foot-head {
+        width: 80%;
+    }
+}

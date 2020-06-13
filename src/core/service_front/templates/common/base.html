@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Essay Service, Essay Writing, Essay" />
+    <link rel="shortcut icon" href="{% static 'service_front/common/assets/logo.jpg' %}" type="image/gif" sizes="16x16">
+    <title>
+    {% block head %}
+        Essay Service
+    {% endblock %}
+    </title>
+    {% block styles %}
+    <link href="{% static '/service_front/common/css/base.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" id="materializecss-cdn">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" id="fontawesome-cdn">
+    {% endblock %}
+</head>
+<body>
+{% block messages %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="row" id="alert_box">
+        <div class="col s12 m12">
+          <div class="card {{ message.tags }}">
+            <div class="row">
+              <div class="col s12 m10">
+                <div class="card-content white-text">
+                  <p id="message">{{message}}</p>
+              </div>
+            </div>
+            <div class="col s12 m2">
+              <i class="fa fa-times icon_style" id="alert_close" aria-hidden="true"></i>
+            </div>
+          </div>
+         </div>
+        </div>
+      </div>
+      <script>
+          setTimeout(function(){ $( "#alert_box" ).fadeOut( "slow") }, 3500);
+      </script>
+    {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block header %}
+<header>
+    <ul id="dropdown" class="dropdown-content">
+        <div class="row">
+            <h4 class="green-text center">Login</h4>
+        </div>
+        <form method="POST" action="/login" class="login-form">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Placeholder" id="first_name" type="email" name="email" class="validate">
+                    <label for="first_name">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                <input id="password" type="password" name="password" class="validate" required>
+                <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <button class="waves-effect waves-light btn" type="submit" name="action">Login</button>
+                </div>
+                <div class="input-field col s6">
+                    <a class="waves-effect waves-light btn" href="#!">Register</a>
+                </div>
+            </div>
+            {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+            {% endif %}
+        </form>
+    </ul>
+    <div class="navbar-fixed">
+        <nav class="white">
+            <div class="container">
+                <a href="/" class="brand-logo green-text company-logo"><img src="{% static 'service_front/common/assets/logo.jpg' %}">Essay Service</a>
+                <a href="#" data-target="mobile-navigation" class="sidenav-trigger"><i class="material-icons green-text">menu</i></a>
+                <div class="nav-wrapper hide-on-med-and-down">
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#!" class="green-text">How it works</a></li>
+                        <li><a href="#!" class="green-text">Top Writers</a></li>
+                        <li><a href="#!" class="green-text">About Us</a></li>
+                        <li><a href="#!" class="green-text">Blog</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li><a href="/profile" class="green-text">Profile</a></li>
+                        <li><a href="/logout" class="green-text">Logout</a></li>
+                        {% else %}
+                        <li><a class="dropdown-trigger green-text" href="#!" data-target="dropdown">Login<i class="material-icons right green-text">arrow_drop_down</i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <ul class="sidenav" id="mobile-navigation">
+        <li><a href="/" class="green-text">Home</a></li>
+        <li><a href="#!" class="green-text">How it works</a></li>
+        <li><a href="#!" class="green-text">Top Writers</a></li>
+        <li><a href="#!" class="green-text">About Us</a></li>
+        <li><a href="#!" class="green-text">Blog</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="/profile" class="green-text">Profile</a></li>
+        <li><a href="/logout" class="green-text">Logout</a></li>
+        {% else %}
+        <li><a class="green-text dropdown-trigger" data-target="dropdownForm">Login<i class="material-icons right green-text">arrow_drop_down</i></a></li>
+        <ul id="dropdownForm" class="dropdown-content">
+        <form method="POST" action="/login" class="login-form">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Email" id="email" type="email" name="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                <input id="password" type="password" name="password" class="validate" required>
+                <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <button class="waves-effect waves-light btn" type="submit" name="action">Login</button>
+                </div>
+                <div class="input-field col s6">
+                    <a class="waves-effect waves-light btn" href="/register">Register</a>
+                </div>
+            </div>
+            {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+            {% endif %}
+        </form>
+        </ul>
+        {% endif %}
+    </ul>
+</header>
+{% endblock %}
+{% block content %}
+
+{% endblock %}
+{% block footer %}
+<div class="footer">
+    <div class="container">
+        <div class="row footer-content">
+           <div class="col m4 s12">
+               <ul class="footer-menu">
+                   <li class="foot-head">ESSAY SERVICE</li>
+                   <li><a href="#">About us</a></li>
+                   <li><a href="#">Contact us</a></li>
+                   <li><a href="#">User Reviews</a></li>
+                   <li><a href="#">FAQs</a></li>
+               </ul>
+           </div>
+           <div class="col m4 s12">
+               <ul class="footer-menu">
+                   <li class="foot-head">LEGAL</li>
+                   <li><a href="#">Confidentiality Policy</a></li>
+                   <li><a href="#">Terms & Conditions</a></li>
+                   <li><a href="#">Privacy Policy</a></li>
+                   <li><a href="#">Cookie Policy</a></li>
+                   <li><a href="#">Money Back Guarantee</a></li>
+               </ul>
+           </div>
+           <div class="col m4 s12">
+               <ul class="footer-menu">
+                   <li class="foot-head">SERVICES</li>
+                   <li><a href="#">Coursework help</a></li>
+                   <li><a href="#">Write my Coursework</a></li>
+                   <li><a href="#">Paper Writing Service</a></li>
+                   <li><a href="#">Buy Research Paper</a></li>
+                   <li><a href="#">Buy Coursework</a></li>
+                   <li><a href="#">Thesis Writing Service</a></li>
+                   <li><a href="#">Resources</a></li>
+                   <li><a href="#">Sample Papers</a></li>
+                   <li><a href="#">Blog</a></li>
+               </ul>
+           </div>
+        </div>
+        <div class="row payments centered">
+            <h4 class="">We Accept</h4>
+            <ul class="">
+                <li><i class="fab fa-3x fa-paypal"></i></li>
+                <li><i class="fab fa-3x fa-cc-visa"></i></li>
+                <li><i class="fab fa-3x fa-cc-mastercard"></i></li>
+            </ul>
+        </div>
+        <div class="row social centered">
+            <h4>Social</h4>
+            <ul>
+                <li><i class="fab fa-2x fa-facebook"></i></li>
+                <li><i class="fab fa-2x fa-instagram"></i></li>
+                <li><i class="fab fa-2x fa-linkedin-in"></i></li>
+            </ul>
+        </div>
+        <div class="row copyright center">
+            <p>&#9400;2015 - 2020, EssayService LLC</p>
+            <p>
+                EssayService provides research services for limited use only. Refer
+                to our <a href="#">T&C</a> for proper references
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" id="jquery-cdn"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" id="materializejs-cdn"></script>
+<script type="text/javascript" src="{% static 'service_front/common/js/base.js' %}"></script>
+{% endblock %}
+</body>
+</html>
