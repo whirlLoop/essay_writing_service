@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+    web:
+        build:
+            context: .
+            args:
+                DJANGO_SETTINGS_MODULE: core.settings.development
+                SECRET_KEY: very-random-string-or-not
+        command: python src/core/manage.py runserver 0.0.0.0:5000
+        environment:
+            DJANGO_SETTINGS_MODULE: core.settings.development
+            SECRET_KEY: very-random-string-or-not
+        volumes:
+            - .:/writing_service
+        ports:
+            - 5000:5000
