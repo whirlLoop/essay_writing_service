@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Essay Service, Essay Writing, Essay" />
-    <link rel="shortcut icon" href="{% static 'service_front/common/assets/logo.jpg' %}" type="image/gif" sizes="16x16">
+    <link rel="shortcut icon" href="{% static 'frontend/common/assets/logo.jpg' %}" type="image/gif" sizes="16x16">
     <title>
     {% block head %}
         Essay Service
     {% endblock %}
     </title>
     {% block styles %}
-    <link href="{% static '/service_front/common/css/base.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static '/frontend/common/css/base.css' %}" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" id="materializecss-cdn">
@@ -82,7 +82,7 @@
     <div class="navbar-fixed">
         <nav class="white">
             <div class="container">
-                <a href="/" class="brand-logo green-text company-logo"><img src="{% static 'service_front/common/assets/logo.jpg' %}">Essay Service</a>
+                <a href="/" class="brand-logo green-text company-logo"><img src="{% static 'frontend/common/assets/logo.jpg' %}">Essay Service</a>
                 <a href="#" data-target="mobile-navigation" class="sidenav-trigger"><i class="material-icons green-text">menu</i></a>
                 <div class="nav-wrapper hide-on-med-and-down">
                     <ul class="right hide-on-med-and-down">
@@ -218,7 +218,7 @@
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" id="jquery-cdn"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" id="materializejs-cdn"></script>
-<script type="text/javascript" src="{% static 'service_front/common/js/base.js' %}"></script>
+<script type="text/javascript" src="{% static 'frontend/common/js/base.js' %}"></script>
 {% endblock %}
 </body>
 </html>

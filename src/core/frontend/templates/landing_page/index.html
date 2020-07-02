@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <!-- Add the slick-theme.css if you want default styling -->
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-<link href="{% static '/service_front/css/landing_page/style.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static '/frontend/css/landing_page/style.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block content %}
 <div class="content">
@@ -30,19 +30,18 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 m8 push-m2">
-                                <input id="email" type="email" name="email" class="validate">
-                                <label for="email">Email</label>
+                                    <input id="email" type="email" name="registration_email" class="validate">
+                                    <label for="email">Email</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 m8 push-m2">
-                                    <select id="essayType">
-                                        <option value="0" disabled selected>Essay type</option>
+                                    <select id="essayType" class="browser-default">
+                                        <option value="0" disabled selected>Select essay type</option>
                                         <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
+                                        <option value="Essay (any type)">Essay (any type)</option>
                                         <option value="3">Option 3</option>
                                     </select>
-                                    <label>Select essay type</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -85,8 +84,8 @@
                                 <div class="input-field col s12 m8 push-m2">
                                     <p>
                                         <label>
-                                            <input type="checkbox" checked="checked" name="subscription"/>
-                                            <span>I agree to receive bonuses and promotional material</a></span>
+                                            <input type="checkbox" name="subscription"/>
+                                            <span id="subscription">I agree to receive bonuses and promotional material</a></span>
                                         </label>
                                     </p>
                                 </div>
@@ -126,7 +125,7 @@
                                     <p class="paper-title"><strong>Black lives matter</strong></p>
                                     <p class="paper-type">Essay <span class="no-of-pages">4 pages</span></p>
                                     <div class="writer-info">
-                                        <img class="writer-avatar" src="{% static 'service_front/common/assets/logo.jpg' %}" alt="User Avatar">
+                                        <img class="writer-avatar" src="{% static 'frontend/common/assets/logo.jpg' %}" alt="User Avatar">
                                         <p>Writer: <span class="writer-name red-text"><b>The real shark</b></span></p>
                                     </div>
                                 </div>
@@ -143,7 +142,7 @@
                                     <p class="paper-title">Hospitality and Management</p>
                                     <p class="paper-type">Essay <span class="no-of-pages">9 pages</span></p>
                                     <div class="writer-info">
-                                        <img class="writer-avatar" src="{% static 'service_front/common/assets/logo.jpg' %}" alt="User Avatar">
+                                        <img class="writer-avatar" src="{% static 'frontend/common/assets/logo.jpg' %}" alt="User Avatar">
                                         <p>Writer: <span class="writer-name red-text"><b>The real shark</b></span></p>
                                     </div>
                                 </div>
@@ -160,7 +159,7 @@
                                     <p class="paper-title">Black lives matter</p>
                                     <p class="paper-type">Essay <span class="no-of-pages">3 pages</span></p>
                                     <div class="writer-info">
-                                        <img class="writer-avatar" src="{% static 'service_front/common/assets/logo.jpg' %}" alt="User Avatar">
+                                        <img class="writer-avatar" src="{% static 'frontend/common/assets/logo.jpg' %}" alt="User Avatar">
                                         <p>Writer: <span class="writer-name red-text"><b>The real shark</b></span></p>
                                     </div>
                                 </div>
@@ -220,6 +219,6 @@
 {% block scripts %}
 {{ block.super }}
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script type="text/javascript" src="{% static 'service_front/js/landing_page/script.js' %}"></script>
+<script type="text/javascript" src="{% static 'frontend/js/landing_page/script.js' %}"></script>
 {% endblock %}
 {% endblock %}

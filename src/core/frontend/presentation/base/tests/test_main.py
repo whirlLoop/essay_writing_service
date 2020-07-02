@@ -1,6 +1,6 @@
 """Test general site attributes such as metadata, title etc.
 """
-from service_front.tests.ui.common import BaseSeleniumTestCase
+from frontend.presentation.common.tests.ui import BaseSeleniumTestCase
 
 
 class MainTestCase(BaseSeleniumTestCase):
