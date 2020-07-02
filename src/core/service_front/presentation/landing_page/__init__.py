@@ -1,1 +1,1 @@
-from .views import landing_page
+from .views import LandingPageView

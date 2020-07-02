@@ -90,12 +90,14 @@
                         <li><a href="#!" class="green-text">Top Writers</a></li>
                         <li><a href="#!" class="green-text">About Us</a></li>
                         <li><a href="#!" class="green-text">Blog</a></li>
+                        {% comment %}
                         {% if request.user.is_authenticated %}
                         <li><a href="/profile" class="green-text">Profile</a></li>
                         <li><a href="/logout" class="green-text">Logout</a></li>
                         {% else %}
                         <li><a class="dropdown-trigger green-text" href="#!" data-target="dropdown">Login<i class="material-icons right green-text">arrow_drop_down</i></a></li>
                         {% endif %}
+                        {% endcomment %}
                     </ul>
                 </div>
             </div>
@@ -107,6 +109,7 @@
         <li><a href="#!" class="green-text">Top Writers</a></li>
         <li><a href="#!" class="green-text">About Us</a></li>
         <li><a href="#!" class="green-text">Blog</a></li>
+        {% comment %}
         {% if request.user.is_authenticated %}
         <li><a href="/profile" class="green-text">Profile</a></li>
         <li><a href="/logout" class="green-text">Logout</a></li>
@@ -141,6 +144,7 @@
         </form>
         </ul>
         {% endif %}
+        {% endcomment %}
     </ul>
 </header>
 {% endblock %}

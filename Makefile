@@ -10,7 +10,7 @@ activate:
 	pipenv shell
 
 run:
-	export DJANGO_SETTINGS_MODULE='core.settings.development'; export SECRET_KEY='secret key'; python src/core/manage.py runserver
+	source dev.env; python src/core/manage.py runserver;
 
 migration:
 	export DJANGO_SETTINGS_MODULE='core.settings.development'; export SECRET_KEY='secret key'; python src/core/manage.py makemigrations
@@ -21,7 +21,7 @@ migrate:
 superuser:
 	export DJANGO_SETTINGS_MODULE='core.settings.development'; export SECRET_KEY='secret key'; python src/core/manage.py createsuperuser
 
-deploy:
+dev:
 	docker-compose build
 	docker-compose up -d
 
