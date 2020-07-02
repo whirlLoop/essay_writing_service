@@ -21,8 +21,8 @@ urlpatterns = [
     path(
         '',
         include(
-            'service_front.presentation.urls',
-            namespace='service_front'
+            'frontend.presentation.urls',
+            namespace='frontend'
         )
     ),
 ]
