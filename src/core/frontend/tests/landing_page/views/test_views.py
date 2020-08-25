@@ -156,3 +156,65 @@ class LandingPageTestCase(BaseTestCase):
         self.assertIn(
             send_button, self.root_url.content.decode()
         )
+
+    def test_user_can_submit_order_details(self):
+        order_details = {
+            "email": "test@gmail.com",
+            "essay_type": "Thesis",
+            "pages": 4,
+            "date": "jul 08, 2020",
+            "terms": True,
+            "subscription": False
+        }
+        order_response = self.client.post(
+            '/', order_details, follow=True
+        )
+        self.assertRedirects(order_response, '/order_confirmed', 302)
+        self.assertTemplateUsed(
+            order_response, 'orders/order_confirmed.html'
+        )
+        confirmation_message = (
+            'Awesome test@gmail.com! we have received your paper details '
+            'one more thing, go to your email inbox and confirm your email '
+            'we have already sent you a link. If you can\'t find it, click '
+            'resend below'
+        )
+        email_button = (
+            '<a href="https://mail.google.com/"'
+        )
+        self.assertIn(
+            confirmation_message, order_response.content.decode()
+        )
+        self.assertIn(
+            email_button, order_response.content.decode()
+        )
+
+    def test_user_is_notified_of_errors_in_order_form(self):
+        order_details = {
+            "email": "test@gmail.com",
+            "essay_type": "Thesis",
+            "pages": 4,
+            "date": "jul 08, 2020",
+            "terms": False,
+            "subscription": False
+        }
+        order_response = self.client.post(
+            '/', order_details, follow=True
+        )
+        self.assertTemplateNotUsed(
+            order_response, 'orders/order_confirmed.html'
+        )
+        self.assertRedirects(order_response, '/', 302)
+        message = list(order_response.context.get('messages'))[0]
+        self.assertEqual(message.tags, 'error')
+        s_msg = 'Please correct the errors in the form and try again.'
+        self.assertTrue(s_msg in message.message)
+        error_returned = (
+            'Please accept our terms to continue'
+        )
+        self.assertIn(
+            error_returned, order_response.content.decode()
+        )
+
+    def test_fetches_essay_types(self):
+        pass
