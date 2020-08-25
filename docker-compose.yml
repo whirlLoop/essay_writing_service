@@ -6,12 +6,13 @@ services:
             args:
                 DJANGO_SETTINGS_MODULE: core.settings.development
                 SECRET_KEY: very-random-string-or-not
-        command: python src/core/manage.py runserver 0.0.0.0:8000
+        command: python src/core/manage.py runserver 0.0.0.0:7002
         environment:
             DJANGO_SETTINGS_MODULE: core.settings.development
             SECRET_KEY: very-random-string-or-not
+        env_file: .env
         volumes:
             - .:/writing_service
         ports:
-            - 8000:8000
+            - 7002:7002
             # - 4444:4444

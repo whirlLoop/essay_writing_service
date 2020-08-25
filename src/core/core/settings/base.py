@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -124,3 +124,5 @@ print(APPS_PATH)
 STATICFILES_DIRS = (
     APPS_PATH + '/service_front/static',
 )
+
+BASE_ESSAY_API_URL = 'http://0.0.0.0:7000/v1/'
