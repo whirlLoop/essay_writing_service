@@ -43,7 +43,9 @@ class CallToActionForm(forms.Form):
         }
     }
     essays = get_essay_types_for_display()
-    CHOICES = tuple((k, v) for k, v in essays.items())
+    CHOICES = ()
+    if essays['code'] == 'success':
+        CHOICES = tuple((k, v) for k, v in essays['payload'].items())
     email = forms.EmailField(error_messages=error_messages['email'])
     number_of_pages = forms.IntegerField(
         min_value=1, error_messages=error_messages['number_of_pages']
