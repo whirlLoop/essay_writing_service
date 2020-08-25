@@ -9,6 +9,7 @@ pylint-django = "*"
 django = "==3.0.7"
 selenium = "==3.141.0"
 coverage = "*"
+requests = "==2.24.0"
 
 [requires]
 python_version = "3.8"

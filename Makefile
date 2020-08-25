@@ -22,11 +22,26 @@ superuser:
 	export DJANGO_SETTINGS_MODULE='core.settings.development'; export SECRET_KEY='secret key'; python src/core/manage.py createsuperuser
 
 dev:
-	docker-compose build
-	docker-compose up -d
+	docker-compose up --build --force-recreate --remove-orphans --detach
 
-down:
+tear-dev:
 	docker-compose down
 
 clean:
 	find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+
+## Run tests. You can specify tests on a particular domain e.g. make test frontend
+test:
+	${INFO} "Testing $(TAG_ARGS)..."
+	docker-compose run writing_service python src/core/manage.py test $(TAG_ARGS)
+
+ifeq (test,$(firstword $(MAKECMDGOALS)))
+  TAG_ARGS := $(word 2, $(MAKECMDGOALS))
+  $(eval $(TAG_ARGS):;@:)
+endif
+
+# COLORS
+YELLOW := `tput setaf 3`
+NC := "\e[0m"
+
+INFO := @bash -c 'printf $(YELLOW); echo "===> $$1"; printf $(NC)' SOME_VALUE
